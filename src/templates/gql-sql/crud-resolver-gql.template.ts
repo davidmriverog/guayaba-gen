@@ -29,7 +29,7 @@ export const CrudResolverGQLTemplate = (entityName: string) => {
       }
 
       @Query(() => [${singular(pascalEntity)}], { name: '${singular(entityName)}FindAll' })
-      @UseGuards(GqlAuthGuard)
+      // @UseGuards(GqlAuthGuard)
       async findAll() {
         return await this.${singular(entityName)}Service.findAll();
       }
