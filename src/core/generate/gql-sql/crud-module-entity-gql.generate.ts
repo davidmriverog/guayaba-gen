@@ -1,6 +1,7 @@
 import * as path from "path";
 import { singular } from "pluralize";
-import { CrudModuleEntityGQLTemplate } from "../../../templates";
+
+import { CrudModuleEntityGQLTemplate } from "../../../templates/gql-sql/crud-module-gql-entity.template";
 
 import { writeFile } from '../../utils/writer-files.util';
 

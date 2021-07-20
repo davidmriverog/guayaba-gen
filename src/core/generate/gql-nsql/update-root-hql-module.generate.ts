@@ -2,8 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { writeFile } from '../../utils/writer-files.util';
 import { getDefaultConfig } from "../../config/param.config";
+import { UpdateRootHQLModuleTemplate } from "../../../templates/rest-module/update-root-hql-module.template";
 
-import { UpdateRootHQLModuleTemplate } from "../../../templates";
 
 export const UpdateRootHQLModule = async () => {
 

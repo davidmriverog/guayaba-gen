@@ -4,8 +4,8 @@ import { singular } from "pluralize";
 
 import { writeFile } from '../../utils/writer-files.util';
 
-import { CrudDtoCreateAndUpdateGQLTemplate, ListPaginateGQLTemplate } from "../../../templates";
 import { customSingular } from "../../utils/convert-singular.util";
+import { CrudDtoCreateAndUpdateGQLTemplate, ListPaginateGQLTemplate } from "../../../templates/gql-sql/crud-dto-gql.template";
 
 export const GenerateCrudDtoGQLModule = async (rootName: string, entityName: string, pathEntity: string) => {
 

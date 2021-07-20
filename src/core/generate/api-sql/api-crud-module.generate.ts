@@ -1,7 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-
-import { ApiRootModuleTemplate } from "../../../templates";
+import { ApiRootModuleTemplate } from "../../../templates/api-module/api-root-module.template";
 
 import { getDefaultConfig } from "../../config/param.config";
 

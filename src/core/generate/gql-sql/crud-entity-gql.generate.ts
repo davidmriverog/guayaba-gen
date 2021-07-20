@@ -1,10 +1,9 @@
 import * as fs from "fs";
 import * as path from "path";
 import { singular } from "pluralize";
+import { CrudEntityGQLTemplate } from "../../../templates/gql-sql/crud-entity-gql.template";
 
 import { writeFile } from '../../utils/writer-files.util';
-
-import { CrudEntityGQLTemplate } from "../../../templates";
 
 export const GenerateCrudEntityGQLModule = async (rootName: string, entityName: string, pathEntity: string) => {
 

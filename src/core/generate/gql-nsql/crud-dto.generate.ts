@@ -4,8 +4,8 @@ import { singular } from "pluralize";
 
 import { writeFile } from '../../utils/writer-files.util';
 
-import { CrudDtoCreateTemplate, CrudDtoUpdateTemplate, ListPaginateTemplate } from "../../../templates";
 import { customSingular } from "../../utils/convert-singular.util";
+import { CrudDtoCreateGQLTemplate, CrudDtoUpdateGQLTemplate, ListPaginateTemplate } from "../../../templates/crud-module-ngql/crud-dto.template";
 
 export const GenerateCrudDtoModule = async (rootName: string, entityName: string, pathEntity: string) => {
 
@@ -16,7 +16,7 @@ export const GenerateCrudDtoModule = async (rootName: string, entityName: string
   const filePathCreateInput = path.resolve(filePathEntity, `create-${customSingular(entityName)}.input.ts`);
 
   // CREATE
-  const rendered = CrudDtoCreateTemplate(entityName);
+  const rendered = CrudDtoCreateGQLTemplate(entityName);
 
   await writeFile(rendered, filePathCreateInput);
 
@@ -24,7 +24,7 @@ export const GenerateCrudDtoModule = async (rootName: string, entityName: string
 
   const filePathUpdateInput = path.resolve(filePathEntity, `update-${customSingular(entityName)}.input.ts`);
 
-  const renderedUpdated = CrudDtoUpdateTemplate(entityName);
+  const renderedUpdated = CrudDtoUpdateGQLTemplate(entityName);
 
   await writeFile(renderedUpdated, filePathUpdateInput);
 

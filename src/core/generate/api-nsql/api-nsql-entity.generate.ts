@@ -1,7 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
+import { CrudApiEntityNSQLTemplate } from "../../../templates/api-module-nsql/api-entity-nsql.template";
 
-import { CrudApiEntityNSQLTemplate } from "../../../templates";
+
 import { customSingular } from "../../utils/convert-singular.util";
 import { writeFile } from "../../utils/writer-files.util";
 

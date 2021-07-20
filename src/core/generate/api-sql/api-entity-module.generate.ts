@@ -1,7 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
 import { singular } from "pluralize";
-import { CrudApiModuleEntityTemplate } from "../../../templates";
+import { CrudApiModuleEntityTemplate } from "../../../templates/api-module/api-entity-module.template";
+
 import { customSingular } from "../../utils/convert-singular.util";
 import { writeFile } from "../../utils/writer-files.util";
 

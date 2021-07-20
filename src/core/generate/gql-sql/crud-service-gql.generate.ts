@@ -1,9 +1,8 @@
 import * as path from "path";
 import { singular } from "pluralize";
+import { CrudServiceGQLTemplate } from "../../../templates/gql-sql/crud-service-gql.template";
 
 import { writeFile } from '../../utils/writer-files.util';
-
-import { CrudServiceGQLTemplate } from "../../../templates";
 
 export const GenerateCrudServiceGQLModule = async (entityName: string, pathEntity: string) => {
 

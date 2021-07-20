@@ -1,6 +1,7 @@
 import * as path from "path";
 import { singular } from "pluralize";
-import { CrudAPIControllerNSQLTemplate } from "../../../templates";
+import { CrudAPIControllerNSQLTemplate } from "../../../templates/api-module-nsql/api-controller-nsql.template";
+
 import { writeFile } from "../../utils/writer-files.util";
 
 export const GenerateAPIControllerNSQLModule = async (entityName: string, pathEntity: string) => {

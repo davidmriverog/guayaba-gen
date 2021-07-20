@@ -1,7 +1,8 @@
 import * as path from "path";
 
 import { singular } from "pluralize";
-import { CrudResolverGQLTemplate } from "../../../templates";
+
+import { CrudResolverGQLTemplate } from "../../../templates/gql-sql/crud-resolver-gql.template";
 
 import { writeFile } from '../../utils/writer-files.util';
 

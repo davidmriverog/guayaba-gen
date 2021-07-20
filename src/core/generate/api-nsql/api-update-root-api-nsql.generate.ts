@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
-import { UpdateRootAPIModuleNSQLTemplate } from "../../../templates";
+import { UpdateRootAPIModuleNSQLTemplate } from "../../../templates/api-module-nsql/api-update-root-api-nsql.template";
+
 import { getDefaultConfig } from "../../config/param.config";
 import { writeFile } from "../../utils/writer-files.util";
 
