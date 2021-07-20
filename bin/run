@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+const image = Buffer.from("IF9fX19fICAgICAgICAgICAgICAgICAgICAgICAgIF8gICAgICAgICAgIAp8ICBfXyBcICAgICAgICAgICAgICAgICAgICAgICB8IHwgICAgICAgICAgCnwgfCAgXC9fICAgXyAgX18gXyBfICAgXyAgX18gX3wgfF9fICAgX18gXyAKfCB8IF9ffCB8IHwgfC8gX2AgfCB8IHwgfC8gX2AgfCAnXyBcIC8gX2AgfAp8IHxfXCBcIHxffCB8IChffCB8IHxffCB8IChffCB8IHxfKSB8IChffCB8CiBcX19fXy9cX18sX3xcX18sX3xcX18sIHxcX18sX3xfLl9fLyBcX18sX3wKICAgICAgICAgICAgICAgICAgICBfXy8gfCAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgfF9fXy8gICAgICAgICAgICAgICAgICAg", 'base64').toString()
+console.log(image);
+
+require('@oclif/command').run()
+.then(require('@oclif/command/flush'))
+.catch(require('@oclif/errors/handle'))
