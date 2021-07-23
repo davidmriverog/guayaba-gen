@@ -5,6 +5,10 @@ export const customSingular = (word: string) => {
   return singular(word).replace("_", "-");
 }
 
+export const customPlural = (word: string) => {
+  return word.replace("-", "_");
+}
+
 export const customSingularPascalCamelCase = (word: string) => {
   return camelCase(singular(word));
 }
