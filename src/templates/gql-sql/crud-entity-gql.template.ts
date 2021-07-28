@@ -1,6 +1,6 @@
 import * as changeCase from "change-case";
 import { singular } from "pluralize";
-import { customPlural, customSnakePlural } from "../../core";
+import { customSnakePlural } from "../../core";
 
 export const CrudEntityGQLTemplate = (rootName: string, entityName: string) => {
 
