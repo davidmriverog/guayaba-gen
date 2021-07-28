@@ -1,6 +1,6 @@
 import * as changeCase from "change-case";
 import { singular } from "pluralize";
-import { customPlural } from "../../core";
+import { customPlural, customSnakePlural } from "../../core";
 
 export const CrudEntityGQLTemplate = (rootName: string, entityName: string) => {
 
@@ -14,7 +14,7 @@ export const CrudEntityGQLTemplate = (rootName: string, entityName: string) => {
 
     @ObjectType()
     @Entity({
-      name: '${rootName}_${customPlural(entityName)}'
+      name: '${rootName}_${customSnakePlural(entityName)}'
     })
     export class ${singular(pascalEntity)} extends BaseModel {
 
