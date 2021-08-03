@@ -7,7 +7,7 @@ import { isJsonFile } from "./json-file.util";
 const prettierOptions: Prettier.Options = {
   parser: "typescript",
   endOfLine: "auto",
-  tabWidth: 4,
+  tabWidth: 2,
   printWidth: 200,
 };
 
