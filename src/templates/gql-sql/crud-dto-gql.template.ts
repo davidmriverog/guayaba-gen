@@ -7,7 +7,7 @@ export const CrudDtoCreateAndUpdateGQLTemplate = (entityName: string) => {
   const pascalEntity = changeCase.pascalCase(entityName);
 
   return `
-  import { InputType, Field, PartialType, ID } from '@nestjs/graphql';
+  import { InputType, Field } from '@nestjs/graphql';
   import { IsNotEmpty } from 'class-validator';
 
   @InputType()

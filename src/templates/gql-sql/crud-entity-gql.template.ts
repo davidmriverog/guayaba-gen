@@ -8,7 +8,7 @@ export const CrudEntityGQLTemplate = (rootName: string, entityName: string) => {
 
   return `
   import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
-  import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+  import { ObjectType, Field, ID } from '@nestjs/graphql';
 
   import { BaseModel } from "../../../../core/lib";
 
