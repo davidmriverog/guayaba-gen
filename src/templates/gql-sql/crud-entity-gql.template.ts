@@ -1,16 +1,16 @@
-import * as changeCase from "change-case";
-import { singular } from "pluralize";
-import { customSnakePlural } from "../../core";
+import * as changeCase from "change-case"
+import { singular } from "pluralize"
+import { customSnakePlural } from "../../core"
 
 export const CrudEntityGQLTemplate = (rootName: string, entityName: string) => {
 
-  const pascalEntity = changeCase.pascalCase(entityName);
+  const pascalEntity = changeCase.pascalCase(entityName)
 
   return `
-  import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
-  import { ObjectType, Field, ID } from '@nestjs/graphql';
+  import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm'
+  import { ObjectType, Field, ID } from '@nestjs/graphql'
 
-  import { BaseModel } from "../../../../core/lib";
+  import { BaseModel } from "../../../../core/lib"
 
   @ObjectType()
   @Entity({
@@ -20,24 +20,24 @@ export const CrudEntityGQLTemplate = (rootName: string, entityName: string) => {
 
     @Field(() => ID, { nullable: true })
     @PrimaryGeneratedColumn()
-    id: number;
+    id: number
 
     @Field(() => String, { nullable: true })
     @Column()
-    name: string;
+    name: string
 
     @Field(() => Date, { nullable: true })
     @CreateDateColumn({ type: 'timestamp' })
-    createdAt?: Date;
+    createdAt?: Date
 
     @Field(() => Date, { nullable: true })
     @UpdateDateColumn({ type: 'timestamp', default: null })
-    updatedAt?: Date;
+    updatedAt?: Date
 
     @Field(() => Date, { nullable: true })
     @DeleteDateColumn({ type: 'timestamp', default: null })
-    deletedAt?: Date;
+    deletedAt?: Date
   }
 
-  `;
-};
+  `
+}

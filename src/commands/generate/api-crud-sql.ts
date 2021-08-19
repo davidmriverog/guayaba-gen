@@ -1,12 +1,12 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "fs"
+import * as path from "path"
 
-import cli from "cli-ux";
-import inquirer from "inquirer";
+import cli from "cli-ux"
+import inquirer from "inquirer"
 
-import { Command, flags } from "@oclif/command";
+import { Command, flags } from "@oclif/command"
 
-import { singular } from "pluralize";
+import { singular } from "pluralize"
 
 import {
   ApiGenerateRootModule,
@@ -16,11 +16,11 @@ import {
   GenerateApiCrudModuleEntityModule,
   GenerateApiCrudServiceModule,
   getDefaultConfig
-} from "../../core";
+} from "../../core"
 
 export class APIRestCrudModule extends Command {
 
-  static description = 'Generador de Module ROOT API - REST';
+  static description = 'Generador de Module ROOT API - REST'
 
   static flags = {
     help: flags.help({ char: 'h' }),
@@ -33,53 +33,53 @@ export class APIRestCrudModule extends Command {
 
   async run() {
 
-    const defaultAppConfig = getDefaultConfig();
+    const defaultAppConfig = getDefaultConfig()
 
-    const { args, flags } = this.parse(APIRestCrudModule);
+    const { args, flags } = this.parse(APIRestCrudModule)
 
-    const prefix: string = flags.prefix ?? await this.promptPrefixName();
-    const name: string = flags.name ?? await this.promptName();
+    const prefix: string = flags.prefix ?? await this.promptPrefixName()
+    const name: string = flags.name ?? await this.promptName()
 
-    const generatedPath = path.resolve(defaultAppConfig.resultPathApi, `./${prefix}`);
+    const generatedPath = path.resolve(defaultAppConfig.resultPathApi, `./${prefix}`)
 
-    cli.action.start(`Check API Module [${prefix}]`);
+    cli.action.start(`Check API Module [${prefix}]`)
 
     if (!fs.existsSync(generatedPath)) {
 
-      await ApiGenerateRootModule(prefix);
+      await ApiGenerateRootModule(prefix)
     }
 
-    const crudModelPath = path.resolve(generatedPath, `./${customSingular(name)}`);
+    const crudModelPath = path.resolve(generatedPath, `./${customSingular(name)}`)
 
     if (!fs.existsSync(crudModelPath)) {
-      fs.mkdirSync(crudModelPath);
+      fs.mkdirSync(crudModelPath)
     }
 
-    cli.action.stop(`Check Module ${prefix} - [OK]`);
+    cli.action.stop(`Check Module ${prefix} - [OK]`)
 
-    cli.action.start(`Creando module entidad ${singular(name)}`);
+    cli.action.start(`Creando module entidad ${singular(name)}`)
 
-    await GenerateApiCrudModuleEntityModule(name, crudModelPath);
+    await GenerateApiCrudModuleEntityModule(name, crudModelPath)
 
-    cli.action.stop(`Module ${singular(name)} [OK]`);
+    cli.action.stop(`Module ${singular(name)} [OK]`)
 
-    cli.action.stop(`Entity API ${singular(name)} [OK]`);
+    cli.action.stop(`Entity API ${singular(name)} [OK]`)
 
-    await GenerateApiCrudEntityModule(prefix, name, crudModelPath);
+    await GenerateApiCrudEntityModule(prefix, name, crudModelPath)
 
-    cli.action.stop(`Entidad API ${singular(name)} [OK]`);
+    cli.action.stop(`Entidad API ${singular(name)} [OK]`)
 
-    cli.action.start(`Creando DTO entidad ${singular(name)}`);
+    cli.action.start(`Creando DTO entidad ${singular(name)}`)
 
-    await GenerateApiCrudDtoModule(prefix, name, crudModelPath);
+    await GenerateApiCrudDtoModule(prefix, name, crudModelPath)
 
-    cli.action.stop(`DTO entidad ${singular(name)} [OK]`);
+    cli.action.stop(`DTO entidad ${singular(name)} [OK]`)
 
-    cli.action.start(`Creando Service entidad ${singular(name)}`);
+    cli.action.start(`Creando Service entidad ${singular(name)}`)
 
-    await GenerateApiCrudServiceModule(name, crudModelPath);
+    await GenerateApiCrudServiceModule(name, crudModelPath)
 
-    cli.action.stop(`Service entidad ${singular(name)} [OK]`);
+    cli.action.stop(`Service entidad ${singular(name)} [OK]`)
 
   }
 
@@ -91,12 +91,12 @@ export class APIRestCrudModule extends Command {
         message: "Ingrese Prefijo del módulo REST:",
         type: "input"
       }
-    ]);
+    ])
 
     if (question.prefix == '')
-      this.proccessRejected('Falta cargar root module name');
+      this.proccessRejected('Falta cargar root module name')
 
-    return question.prefix;
+    return question.prefix
   }
 
   async promptName() {
@@ -107,23 +107,23 @@ export class APIRestCrudModule extends Command {
         message: "Ingrese Entidad del módulo CRUD:",
         type: "input"
       }
-    ]);
+    ])
 
     if (question.name == '')
-      this.proccessRejected('Falta cargar root module name');
+      this.proccessRejected('Falta cargar root module name')
 
-    return question.name;
+    return question.name
   }
 
   proccessRejected(label?: string): void {
 
     if (label) {
-      this.log(label);
+      this.log(label)
     } else {
-      this.log('Proceso rechazado. Por un valor incompleto');
+      this.log('Proceso rechazado. Por un valor incompleto')
     }
 
-    this.exit(0);
+    this.exit(0)
   }
 
 

@@ -1,18 +1,18 @@
-import * as changeCase from "change-case";
-import { singular } from "pluralize";
-import { customSingular } from "../../core";
+import * as changeCase from "change-case"
+import { singular } from "pluralize"
+import { customSingular } from "../../core"
 
 export const CrudApiModuleEntityTemplate = (entityName: string) => {
 
-  const pascalEntity = changeCase.pascalCase(entityName);
+  const pascalEntity = changeCase.pascalCase(entityName)
 
   return `
-    import { Module } from '@nestjs/common';
-    import { TypeOrmModule } from '@nestjs/typeorm';
+    import { Module } from '@nestjs/common'
+    import { TypeOrmModule } from '@nestjs/typeorm'
 
-    import { ${singular(pascalEntity)}Service } from './${customSingular(entityName)}.service';
-    import { ${singular(pascalEntity)}Controller } from './${customSingular(entityName)}.controller';
-    import { ${singular(pascalEntity)} } from './entities/${customSingular(entityName)}.entity';
+    import { ${singular(pascalEntity)}Service } from './${customSingular(entityName)}.service'
+    import { ${singular(pascalEntity)}Controller } from './${customSingular(entityName)}.controller'
+    import { ${singular(pascalEntity)} } from './entities/${customSingular(entityName)}.entity'
 
     @Module({
       imports: [
@@ -23,5 +23,5 @@ export const CrudApiModuleEntityTemplate = (entityName: string) => {
       exports: [${singular(pascalEntity)}Service]
     })
     export class ${singular(pascalEntity)}Module { }
-  `;
-};
+  `
+}
