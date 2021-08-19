@@ -18,7 +18,7 @@ export const UpdateRootHQLModuleTemplate = (pathFile: string) => {
 
     if (fs.statSync(directory).isDirectory()) {
 
-      modulePascalEntityImports.push(`${changeCase.pascalCase(file)}Module`)
+      modulePascalEntityImports.push(`${changeCase.pascalCase(file)}Module,`)
       moduleEntityImports.push(`import { ${changeCase.pascalCase(file)}Module } from './${file}/${file}.module'`)
     }
 
@@ -31,9 +31,9 @@ export const UpdateRootHQLModuleTemplate = (pathFile: string) => {
     ${moduleEntityImports.join("")}
 
     @Module({
-        imports: [
-            ${modulePascalEntityImports}
-        ]
+      imports: [
+        ${modulePascalEntityImports}
+      ]
     })
     export class HQLModule { }
   `

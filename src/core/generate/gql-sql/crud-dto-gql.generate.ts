@@ -1,7 +1,5 @@
 import * as fs from "fs"
 import * as path from "path"
-import { singular } from "pluralize"
-
 import { writeFile } from '../../utils/writer-files.util'
 
 import { customSingular } from "../../utils/convert-singular.util"

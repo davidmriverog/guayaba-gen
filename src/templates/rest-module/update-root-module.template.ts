@@ -30,12 +30,12 @@ export const UpdateRootModuleTemplate = (rootName: string, pathFile: string) => 
   return `
     import { Module } from '@nestjs/common'
 
-    ${moduleEntityImports.join("")}
+    ${moduleEntityImports.join(" \n ")}
 
     @Module({
-        imports: [
-            ${modulePascalEntityImports}
-        ]
+      imports: [
+        ${modulePascalEntityImports}
+      ]
     })
     export class ${moduleName}Module { }
   `

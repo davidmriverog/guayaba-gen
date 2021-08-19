@@ -6,9 +6,10 @@ import { isJsonFile } from "./json-file.util"
 
 const prettierOptions: Prettier.Options = {
   parser: "typescript",
-  endOfLine: "auto",
+  endOfLine: "crlf",
   tabWidth: 2,
   printWidth: 200,
+  semi: false
 }
 
 export const writeFile = async (
