@@ -7,13 +7,13 @@ export const CrudModuleEntityGQLTemplate = (entityName: string) => {
   const pascalEntity = changeCase.pascalCase(entityName)
 
   return `
-  import { Module } from '@nestjs/common'
-  import { TypeOrmModule } from '@nestjs/typeorm'
+  import { Module } from "@nestjs/common"
+  import { TypeOrmModule } from "@nestjs/typeorm"
 
-  import { ${singular(pascalEntity)}Service } from './${customSingular(entityName)}.service'
-  import { ${singular(pascalEntity)}Resolver } from './${customSingular(entityName)}.resolver'
+  import { ${singular(pascalEntity)}Service } from "./${customSingular(entityName)}.service"
+  import { ${singular(pascalEntity)}Resolver } from "./${customSingular(entityName)}.resolver"
 
-  import { ${singular(pascalEntity)} } from './entities/${customSingular(entityName)}.entity'
+  import { ${singular(pascalEntity)} } from "./entities/${customSingular(entityName)}.entity"
 
   @Module({
     imports: [

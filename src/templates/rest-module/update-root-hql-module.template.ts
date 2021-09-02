@@ -26,7 +26,7 @@ export const UpdateRootHQLModuleTemplate = (pathFile: string) => {
 
 
   return `
-    import { Module } from '@nestjs/common'
+    import { Module } from "@nestjs/common"
 
     ${moduleEntityImports.join(" \n ")}
 

@@ -5,7 +5,7 @@ export const RootModuleTemplate = (rootName: string) => {
   const moduleName = changeCase.pascalCase(rootName)
 
   return `
-    import { Module } from '@nestjs/common'
+    import { Module } from "@nestjs/common"
 
     @Module({
         imports: [

@@ -7,14 +7,14 @@ export const CrudEntityGQLTemplate = (rootName: string, entityName: string) => {
   const pascalEntity = changeCase.pascalCase(entityName)
 
   return `
-  import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm'
-  import { ObjectType, Field, ID } from '@nestjs/graphql'
+  import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
+  import { ObjectType, Field, ID } from "@nestjs/graphql"
 
-  import { BaseModel } from "../../../../core/lib"
+  import { BaseModel } from "src/core/lib"
 
   @ObjectType()
   @Entity({
-    name: '${rootName}_${customSnakePlural(entityName)}'
+    name: "${rootName}_${customSnakePlural(entityName)}"
   })
   export class ${singular(pascalEntity)} extends BaseModel {
 
@@ -27,15 +27,15 @@ export const CrudEntityGQLTemplate = (rootName: string, entityName: string) => {
     name: string
 
     @Field(() => Date, { nullable: true })
-    @CreateDateColumn({ type: 'timestamp' })
+    @CreateDateColumn({ type: "timestamp" })
     createdAt?: Date
 
     @Field(() => Date, { nullable: true })
-    @UpdateDateColumn({ type: 'timestamp', default: null })
+    @UpdateDateColumn({ type: "timestamp", default: null })
     updatedAt?: Date
 
     @Field(() => Date, { nullable: true })
-    @DeleteDateColumn({ type: 'timestamp', default: null })
+    @DeleteDateColumn({ type: "timestamp", default: null })
     deletedAt?: Date
   }
 

@@ -28,7 +28,7 @@ export const UpdateRootModuleTemplate = (rootName: string, pathFile: string) => 
 
 
   return `
-    import { Module } from '@nestjs/common'
+    import { Module } from "@nestjs/common"
 
     ${moduleEntityImports.join(" \n ")}
 
