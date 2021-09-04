@@ -8,9 +8,10 @@ export const CrudResolverGQLGuardTemplate = (entityName: string) => {
   const pascalEntity = changeCase.pascalCase(entityName)
 
   return `
+  import { UseGuards } from "@nestjs/common"
   import { Resolver, Query, Mutation, Args, Int } from "@nestjs/graphql"
 
-  import { Protected, IFilterCriterion, FilterCriteriaInfo } from "src/core/lib"
+  import { IFilterCriterion, FilterCriteriaInfo } from "src/core/lib"
   import { GqlAuthGuard } from '../../../graphql/auth/guard/ggl-auth.guard'
 
   import { ${singular(pascalEntity)}Service } from "./${customSingular(entityName)}.service"
