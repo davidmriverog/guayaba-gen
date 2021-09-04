@@ -11,6 +11,7 @@ export const CrudResolverGQLGuardTemplate = (entityName: string) => {
   import { Resolver, Query, Mutation, Args, Int } from "@nestjs/graphql"
 
   import { Protected, IFilterCriterion, FilterCriteriaInfo } from "src/core/lib"
+  import { GqlAuthGuard } from '../../../graphql/auth/guard/ggl-auth.guard'
 
   import { ${singular(pascalEntity)}Service } from "./${customSingular(entityName)}.service"
   import { ${singular(pascalEntity)} } from "./entities/${customSingular(entityName)}.entity"
@@ -23,37 +24,37 @@ export const CrudResolverGQLGuardTemplate = (entityName: string) => {
     constructor(private readonly engineService: ${singular(pascalEntity)}Service) { }
 
     @Query(() => ${singular(pascalEntity)}ListPageInfoResponse)
-    @Protected()
+    @UseGuards(GqlAuthGuard)
     async ${customSingularPascalCamelCase(pascalEntity)}ListPage(@Args("${customSingularPascalCamelCase(pascalEntity)}Criteria", { type: () => FilterCriteriaInfo }) ${customSingularPascalCamelCase(pascalEntity)}Criteria: FilterCriteriaInfo) {
       return await this.engineService.listPage(${customSingularPascalCamelCase(pascalEntity)}Criteria)
     }
 
     @Query(() => [${singular(pascalEntity)}], { name: "${customSingularPascalCamelCase(entityName)}FindAll" })
-    @Protected()
+    @UseGuards(GqlAuthGuard)
     async findAll(@Args("filters", { type: () => [IFilterCriterion], nullable: true }) filters: IFilterCriterion[]) {
       return await this.engineService.findAll(filters);
     }
 
     @Query(() => ${singular(pascalEntity)}, { name: "${customSingularPascalCamelCase(entityName)}" })
-    @Protected()
+    @UseGuards(GqlAuthGuard)
     async findOne(@Args("id", { type: () => Int }) id: number) {
       return await this.engineService.findOne(id)
     }
 
     @Mutation(() => ${singular(pascalEntity)})
-    @Protected()
+    @UseGuards(GqlAuthGuard)
     async create${singular(pascalEntity)}(@Args("${customSingularPascalCamelCase(entityName)}InputDto") ${customSingularPascalCamelCase(entityName)}InputDto: ${singular(pascalEntity)}InputDto) {
       return await this.engineService.create(${customSingularPascalCamelCase(entityName)}InputDto)
     }
 
     @Mutation(() => ${singular(pascalEntity)})
-    @Protected()
+    @UseGuards(GqlAuthGuard)
     async update${singular(pascalEntity)}(@Args("id", { type: () => Int }) id: number, @Args("${customSingularPascalCamelCase(entityName)}InputDto") ${customSingularPascalCamelCase(entityName)}InputDto: ${singular(pascalEntity)}InputDto) {
       return await this.engineService.update(id, ${customSingularPascalCamelCase(entityName)}InputDto)
     }
 
     @Mutation(() => ${singular(pascalEntity)})
-    @Protected()
+    @UseGuards(GqlAuthGuard)
     async remove${singular(pascalEntity)}(@Args("id", { type: () => Int }) id: number) {
       return await this.engineService.remove(id)
     }
