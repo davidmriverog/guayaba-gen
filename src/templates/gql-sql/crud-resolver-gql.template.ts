@@ -10,7 +10,7 @@ export const CrudResolverGQLTemplate = (entityName: string) => {
   return `
   import { Resolver, Query, Mutation, Args, Int } from "@nestjs/graphql"
 
-  import { Protected, IFilterCriterion, FilterCriteriaInfo } from "src/core/lib"
+  import { Protected, FilterCriteriaInfo } from "src/core/lib"
 
   import { ${singular(pascalEntity)}Service } from "./${customSingular(entityName)}.service"
   import { ${singular(pascalEntity)} } from "./entities/${customSingular(entityName)}.entity"
@@ -30,8 +30,8 @@ export const CrudResolverGQLTemplate = (entityName: string) => {
 
     @Query(() => [${singular(pascalEntity)}], { name: "${customSingularPascalCamelCase(entityName)}FindAll" })
     @Protected()
-    async findAll(@Args("filters", { type: () => [IFilterCriterion], nullable: true }) filters: IFilterCriterion[]) {
-      return await this.engineService.findAll(filters);
+    async findAll(@Args("criteria", { type: () => FilterCriteriaInfo, nullable: true }) criteria: FilterCriteriaInfo) {
+      return await this.engineService.findAll(criteria)
     }
 
     @Query(() => ${singular(pascalEntity)}, { name: "${customSingularPascalCamelCase(entityName)}" })
