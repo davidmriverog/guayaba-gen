@@ -1,5 +1,4 @@
 import * as changeCase from "change-case"
-import { camelCase } from "change-case"
 import { singular } from "pluralize"
 import { customSingular, customSingularPascalCamelCase } from "../../core"
 
