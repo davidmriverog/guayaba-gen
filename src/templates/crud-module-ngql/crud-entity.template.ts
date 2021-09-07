@@ -23,18 +23,7 @@ export const CrudEntityTemplate = (rootName: string, entityName: string) => {
     @Field(() => String, { nullable: true })
     @Column()
     name: string
-
-    @Field(() => Date, { nullable: true })
-    @CreateDateColumn({ type: "timestamp" })
-    createdAt?: Date
-
-    @Field(() => Date, { nullable: true })
-    @UpdateDateColumn({ type: "timestamp", default: null })
-    updatedAt?: Date
-
-    @Field(() => Date, { nullable: true })
-    @DeleteDateColumn({ type: "timestamp", default: null })
-    deletedAt?: Date
+    
   }
   `
 }
