@@ -8,7 +8,7 @@ export const CrudResolverTemplate = (entityName: string) => {
 
   return `
   import { UseGuards } from "@nestjs/common"
-  import { Resolver, Query, Mutation, Args, Int } from "@nestjs/graphql"
+  import { Resolver, Query, Mutation, Args } from "@nestjs/graphql"
 
   import { IFilterCriterion, FilterCriteriaInfo } from "src/core/lib"
   import { GqlAuthGuard } from '../../../graphql/auth/guard/ggl-auth.guard'
@@ -37,7 +37,7 @@ export const CrudResolverTemplate = (entityName: string) => {
 
     @Query(() => ${singular(pascalEntity)}, { name: "${customSingularPascalCamelCase(entityName)}" })
     @UseGuards(GqlAuthGuard)
-    async findOne(@Args("id", { type: () => Int }) id: number) {
+    async findOne(@Args("id", { type: () => String }) id: string) {
       return await this.engineService.findOne(id)
     }
 
@@ -49,13 +49,13 @@ export const CrudResolverTemplate = (entityName: string) => {
 
     @Mutation(() => ${singular(pascalEntity)})
     @UseGuards(GqlAuthGuard)
-    async update${singular(pascalEntity)}(@Args("id", { type: () => Int }) id: number, @Args("${customSingularPascalCamelCase(entityName)}InputDto") ${customSingularPascalCamelCase(entityName)}InputDto: ${singular(pascalEntity)}InputDto) {
+    async update${singular(pascalEntity)}(@Args("id", { type: () => String }) id: string, @Args("${customSingularPascalCamelCase(entityName)}InputDto") ${customSingularPascalCamelCase(entityName)}InputDto: ${singular(pascalEntity)}InputDto) {
       return await this.engineService.update(id, ${customSingularPascalCamelCase(entityName)}InputDto)
     }
 
     @Mutation(() => ${singular(pascalEntity)})
     @UseGuards(GqlAuthGuard)
-    async remove${singular(pascalEntity)}(@Args("id", { type: () => Int }) id: number) {
+    async remove${singular(pascalEntity)}(@Args("id", { type: () => String }) id: string) {
       return await this.engineService.remove(id)
     }
   }
