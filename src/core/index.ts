@@ -7,6 +7,7 @@ export * from './generate/gql-nsql/update-root-hql-module.generate'
 export * from './generate/gql-nsql/crud-entity.generate'
 export * from './generate/gql-nsql/crud-resolver.generate'
 export * from './generate/gql-nsql/crud-module-entity.generate'
+export * from './generate/gql-nsql/crud-service.generate'
 
 export * from './generate/api-sql/api-crud-module.generate'
 export * from './generate/api-sql/api-entity.generate'

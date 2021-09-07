@@ -9,21 +9,20 @@ import { Command, flags } from "@oclif/command"
 import { singular } from "pluralize"
 
 import {
-  ApiGenerateRootModule,
-  customSingular,
-  GenerateAPIControllerNSQLModule,
-  GenerateApiCrudDtoModule,
-  GenerateApiCrudEntityNSQLModule,
-  GenerateApiCrudModuleEntityModule,
-  GenerateApiCrudServiceModule,
-  UpdateRootNSQLModule,
+  GenerateCrudDtoGQLModule,
+  GenerateCrudEntityModule,
+  GenerateRootModule,
+  GenerateCrudServiceModule,
   getDefaultConfig,
-  UpdateRootAPIModuleNSQL
+  GenerateCrudResolverModule,
+  GenerateCrudModuleEntityGQLModule,
+  UpdateRootModule,
+  UpdateRootHQLModule
 } from "../../core"
 
 export class APIRestCrudNOSQLModule extends Command {
 
-  static description = 'Generador de Module ROOT API - REST (MONGO)'
+  static description = 'Generador de Module GRAPQHL (MONGODB)'
 
   static flags = {
     help: flags.help({ char: 'h' }),
@@ -43,16 +42,17 @@ export class APIRestCrudNOSQLModule extends Command {
     const prefix: string = flags.prefix ?? await this.promptPrefixName()
     const name: string = flags.name ?? await this.promptName()
 
-    const generatedPath = path.resolve(defaultAppConfig.resultPathApi, `./${prefix}`)
 
-    cli.action.start(`Check API Module [${prefix}]`)
+    const generatedPath = path.resolve(defaultAppConfig.resultPathGraphql, `./${prefix}`)
+
+    cli.action.start(`Check Module [${prefix}]`)
 
     if (!fs.existsSync(generatedPath)) {
 
-      await ApiGenerateRootModule(prefix)
+      await GenerateRootModule(prefix)
     }
 
-    const crudModelPath = path.resolve(generatedPath, `./${customSingular(name)}`)
+    const crudModelPath = path.resolve(generatedPath, `./${singular(name)}`)
 
     if (!fs.existsSync(crudModelPath)) {
       fs.mkdirSync(crudModelPath)
@@ -60,47 +60,47 @@ export class APIRestCrudNOSQLModule extends Command {
 
     cli.action.stop(`Check Module ${prefix} - [OK]`)
 
+    cli.action.start(`Creando entidad ${singular(name)}`)
+
+    await GenerateCrudEntityModule(prefix, name, crudModelPath)
+
+    cli.action.stop(`Entidad ${singular(name)} [OK]`)
+
+    cli.action.start(`Creando dto entidad ${singular(name)}`)
+
+    await GenerateCrudDtoGQLModule(prefix, name, crudModelPath)
+
+    cli.action.stop(`DTO dto entidad ${singular(name)} [OK]`)
+
+    cli.action.start(`Creando service entidad ${singular(name)}`)
+
+    await GenerateCrudServiceModule(name, crudModelPath)
+
+    cli.action.stop(`service entidad ${singular(name)} [OK]`)
+
+    cli.action.start(`Creando resolver entidad ${singular(name)}`)
+
+    await GenerateCrudResolverModule(name, crudModelPath)
+
+    cli.action.stop(`reosolver ${singular(name)} [OK]`)
+
     cli.action.start(`Creando module entidad ${singular(name)}`)
 
-    await GenerateApiCrudModuleEntityModule(name, crudModelPath)
+    await GenerateCrudModuleEntityGQLModule(name, crudModelPath)
 
-    cli.action.stop(`Module ${singular(name)} [OK]`)
+    cli.action.stop(`module ${singular(name)} [OK]`)
 
-    cli.action.stop(`Entity API ${singular(name)} [OK]`)
+    cli.action.start(`Actualizamos modulo Raiz ${prefix}`)
 
-    await GenerateApiCrudEntityNSQLModule(prefix, name, crudModelPath)
+    await UpdateRootModule(prefix)
 
-    cli.action.stop(`Entidad API ${singular(name)} [OK]`)
+    cli.action.stop(`Actualizamos modulo ${singular(name)} [OK]`)
 
-    cli.action.start(`Creando DTO entidad ${singular(name)}`)
+    cli.action.start(`Actualizamos HQL Module`)
 
-    await GenerateApiCrudDtoModule(prefix, name, crudModelPath)
+    await UpdateRootHQLModule()
 
-    cli.action.stop(`DTO entidad ${singular(name)} [OK]`)
-
-    cli.action.start(`Creando Service entidad ${singular(name)}`)
-
-    await GenerateApiCrudServiceModule(name, crudModelPath)
-
-    cli.action.stop(`Service entidad ${singular(name)} [OK]`)
-
-    cli.action.start(`Creando controller entidad ${singular(name)}`)
-
-    await GenerateAPIControllerNSQLModule(name, crudModelPath)
-
-    cli.action.stop(`controller ${singular(name)} [OK]`)
-
-    cli.action.start(`Actualizamos modulo Raiz PREFIX ${prefix}`)
-
-    await UpdateRootNSQLModule(prefix)
-
-    cli.action.stop(`Actualizamos modulo PREFIX ${singular(name)} [OK]`)
-
-    cli.action.start(`Actualizamos API Module`)
-
-    await UpdateRootAPIModuleNSQL()
-
-    cli.action.stop(`Modulo API [OK]`)
+    cli.action.stop(`Modulo HQL [OK]`)
 
   }
 
@@ -109,7 +109,7 @@ export class APIRestCrudNOSQLModule extends Command {
     const question: { prefix: string } = await inquirer.prompt([
       {
         name: "prefix",
-        message: "Ingrese Prefijo del módulo REST:",
+        message: "Ingrese Prefijo del módulo GRAPHQL:",
         type: "input"
       }
     ])
