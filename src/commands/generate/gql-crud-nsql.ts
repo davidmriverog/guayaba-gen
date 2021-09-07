@@ -20,7 +20,7 @@ import {
   UpdateRootHQLModule
 } from "../../core"
 
-export class APIRestCrudNOSQLModule extends Command {
+export class GQLCrudNOSQLModule extends Command {
 
   static description = 'Generador de Module GRAPQHL (MONGODB)'
 
@@ -37,7 +37,7 @@ export class APIRestCrudNOSQLModule extends Command {
 
     const defaultAppConfig = getDefaultConfig()
 
-    const { args, flags } = this.parse(APIRestCrudNOSQLModule)
+    const { args, flags } = this.parse(GQLCrudNOSQLModule)
 
     const prefix: string = flags.prefix ?? await this.promptPrefixName()
     const name: string = flags.name ?? await this.promptName()

@@ -20,7 +20,6 @@ export const CrudEntityTemplate = (rootName: string, entityName: string) => {
   })
   export class ${singular(pascalEntity)} extends BaseModel {
 
-
     @Field(() => String, { nullable: true })
     @Column()
     name: string
@@ -36,6 +35,6 @@ export const CrudEntityTemplate = (rootName: string, entityName: string) => {
     @Field(() => Date, { nullable: true })
     @DeleteDateColumn({ type: "timestamp", default: null })
     deletedAt?: Date
-
+  }
   `
 }
