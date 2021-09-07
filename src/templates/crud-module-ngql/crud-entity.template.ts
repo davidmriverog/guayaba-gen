@@ -9,7 +9,7 @@ export const CrudEntityTemplate = (rootName: string, entityName: string) => {
   const pascalEntity = changeCase.pascalCase(entityName)
 
   return `
-  import { Entity, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
+  import { Entity, Column } from "typeorm"
   import { ObjectType, Field } from "@nestjs/graphql"
 
   import { BaseModel } from "src/core/lib"
@@ -23,7 +23,7 @@ export const CrudEntityTemplate = (rootName: string, entityName: string) => {
     @Field(() => String, { nullable: true })
     @Column()
     name: string
-    
+
   }
   `
 }
