@@ -10,7 +10,7 @@ export const CrudEntityTemplate = (rootName: string, entityName: string) => {
 
   return `
   import { Entity, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
-  import { ObjectType, Field, ID } from "@nestjs/graphql"
+  import { ObjectType, Field } from "@nestjs/graphql"
 
   import { BaseModel } from "src/core/lib"
 
