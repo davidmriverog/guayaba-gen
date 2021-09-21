@@ -22,6 +22,8 @@ export const CrudServiceGQLTemplate = (entityName: string) => {
       private readonly engineRepository: Repository<${singular(pascalEntity)}>
     ) {
       super(engineRepository)
+
+      this.modelClass = ${singular(entityName)}
     }
   }
   `
