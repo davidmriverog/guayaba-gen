@@ -11,7 +11,7 @@ import { GenerateCrudDtoGQLModule, GenerateCrudEntityGQLModule, GenerateCrudModu
 
 export class GQLCrudModule extends Command {
 
-  static description = 'Generador de Module GRAPQHL - CRUD'
+  static description = 'Generador de Module GRAPHQL - CRUD'
 
   static flags = {
     help: flags.help({ char: 'h' }),

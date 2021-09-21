@@ -22,7 +22,7 @@ import {
 
 export class GQLCrudNOSQLModule extends Command {
 
-  static description = 'Generador de Module GRAPQHL (MONGODB)'
+  static description = 'Generador de Module GRAPHQL (MONGODB)'
 
   static flags = {
     help: flags.help({ char: 'h' }),
