@@ -23,7 +23,7 @@ export const CrudServiceGQLTemplate = (entityName: string) => {
     ) {
       super(engineRepository)
 
-      this.modelClass = ${singular(entityName)}
+      this.modelClass = ${singular(pascalEntity)}
     }
   }
   `
