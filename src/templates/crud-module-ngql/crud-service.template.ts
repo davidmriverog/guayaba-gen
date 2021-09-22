@@ -20,6 +20,8 @@ export const CrudServiceTemplate = (entityName: string) => {
         private readonly engineRepository: MongoRepository<${singular(pascalEntity)}>
       ) {
         super(engineRepository)
+
+        this.modelClass = ${singular(pascalEntity)}
       }
     }
 

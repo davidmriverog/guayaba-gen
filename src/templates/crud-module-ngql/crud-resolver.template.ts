@@ -10,7 +10,7 @@ export const CrudResolverTemplate = (entityName: string) => {
   import { UseGuards } from "@nestjs/common"
   import { Resolver, Query, Mutation, Args } from "@nestjs/graphql"
 
-  import { IFilterCriterion, FilterCriteriaInfo } from "src/core/lib"
+  import { FilterCriteriaInfo } from "src/core/lib"
   import { GqlAuthGuard } from '../../../graphql/auth/guard/ggl-auth.guard'
 
   import { ${singular(pascalEntity)}Service } from "./${customSingular(entityName)}.service"
@@ -31,8 +31,8 @@ export const CrudResolverTemplate = (entityName: string) => {
 
     @Query(() => [${singular(pascalEntity)}], { name: "${customSingularPascalCamelCase(entityName)}FindAll" })
     @UseGuards(GqlAuthGuard)
-    async findAll(@Args("filters", { type: () => [IFilterCriterion], nullable: true }) filters: IFilterCriterion[]) {
-      return await this.engineService.findAll(filters);
+    async findAll(@Args("criteria", { type: () => FilterCriteriaInfo, nullable: true }) criteria: FilterCriteriaInfo) {
+      return await this.engineService.findAll(criteria)
     }
 
     @Query(() => ${singular(pascalEntity)}, { name: "${customSingularPascalCamelCase(entityName)}" })
@@ -59,6 +59,6 @@ export const CrudResolverTemplate = (entityName: string) => {
       return await this.engineService.remove(id)
     }
   }
-    
+
   `
 }
