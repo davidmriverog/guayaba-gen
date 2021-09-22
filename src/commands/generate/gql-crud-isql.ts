@@ -7,7 +7,16 @@ import inquirer from "inquirer"
 
 import { Command, flags } from "@oclif/command"
 import { GenerateRootModule } from "../../core/generate/gql-nsql/root-module.generate"
-import { GenerateCrudDtoGQLModule, GenerateCrudEntityGQLModule, GenerateCrudModuleEntityGQLModule, GenerateCrudResolverGQLGuardModule, GenerateCrudServiceGQLModule, getDefaultConfig, UpdateRootHQLModule, UpdateRootModule } from "../../core"
+import {
+  GenerateCrudDtoGQLModule,
+  GenerateCrudEntityGQLModule,
+  GenerateCrudModuleEntityGQLModule,
+  GenerateCrudResolverGQLGuardModule,
+  GenerateCrudServiceGQLModule,
+  getDefaultConfig,
+  UpdateRootHQLModule,
+  UpdateRootModule
+} from "../../core"
 
 export class GQLCrudModule extends Command {
 
