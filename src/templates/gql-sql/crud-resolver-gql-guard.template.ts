@@ -32,8 +32,8 @@ export const CrudResolverGQLGuardTemplate = (entityName: string) => {
 
     @Query(() => [${singular(pascalEntity)}], { name: "${customSingularPascalCamelCase(entityName)}FindAll" })
     @UseGuards(GqlAuthGuard)
-    async findAll(@Args("filters", { type: () => [IFilterCriterion], nullable: true }) filters: IFilterCriterion[]) {
-      return await this.engineService.findAll(filters);
+    async findAll(@Args("criteria", { type: () => FilterCriteriaInfo, nullable: true }) criteria: FilterCriteriaInfo) {
+      return await this.engineService.findAll(criteria)
     }
 
     @Query(() => ${singular(pascalEntity)}, { name: "${customSingularPascalCamelCase(entityName)}" })
