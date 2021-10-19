@@ -11,7 +11,7 @@ export const CrudResolverGQLGuardTemplate = (entityName: string) => {
   import { UseGuards } from "@nestjs/common"
   import { Resolver, Query, Mutation, Args, Int } from "@nestjs/graphql"
 
-  import { IFilterCriterion, FilterCriteriaInfo } from "src/core/lib"
+  import { FilterCriteriaInfo } from "src/core/lib"
   import { GqlAuthGuard } from '../../../graphql/auth/guard/ggl-auth.guard'
 
   import { ${singular(pascalEntity)}Service } from "./${customSingular(entityName)}.service"
