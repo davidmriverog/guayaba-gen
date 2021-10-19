@@ -9,7 +9,7 @@ import { Command, flags } from "@oclif/command"
 import { GenerateRootModule } from "../../core/generate/gql-nsql/root-module.generate"
 import {
   GenerateCrudDtoGQLModule,
-  GenerateCrudEntityGQLModule,
+  GenerateCrudEntityNoPrefixGQLModule,
   GenerateCrudModuleEntityGQLModule,
   GenerateCrudResolverGQLGuardModule,
   GenerateCrudServiceGQLModule,
@@ -59,7 +59,7 @@ export class GQLCrudModule extends Command {
 
     cli.action.start(`Creando entidad ${singular(name)}`)
 
-    await GenerateCrudEntityGQLModule(prefix, name, crudModelPath)
+    await GenerateCrudEntityNoPrefixGQLModule(prefix, name, crudModelPath)
 
     cli.action.stop(`Entidad ${singular(name)} [OK]`)
 
