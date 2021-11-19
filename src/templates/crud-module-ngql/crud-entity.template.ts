@@ -4,8 +4,6 @@ import { customSnakePlural } from "../../core"
 
 export const CrudEntityTemplate = (rootName: string, entityName: string) => {
 
-  const moduleName = changeCase.pascalCase(rootName)
-
   const pascalEntity = changeCase.pascalCase(entityName)
 
   return `
@@ -16,7 +14,7 @@ export const CrudEntityTemplate = (rootName: string, entityName: string) => {
 
   @ObjectType()
   @Entity({
-    name: "${rootName}_${customSnakePlural(entityName)}"
+    name: "${customSnakePlural(entityName)}"
   })
   export class ${singular(pascalEntity)} extends BaseModel {
 
