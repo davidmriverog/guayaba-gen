@@ -22,57 +22,57 @@ export const CrudAPIControllerNSQLTemplate = (entityName: string) => {
       @Get('/listPage')
       async listPage(@Query("q") q: string) {
 
-        const resultListPage = await this.engineService.listPaginate(q)
+        const resultListPage = await this.engineService.listPage(q)
 
         return resultListPage
       }
 
       @UseGuards(JwtAuthGuard)
       @Get('/')
-      async findAll() {
-          return await this.engineService.findAll()
+      async findAll(@Query("q") q: string) {
+          return await this.engineService.findAll(q)
       }
 
       @UseGuards(JwtAuthGuard)
       @Get('/:id')
-      async findById(@Param('id') id: string) {
+      async findById(@Param('id') id: number) {
         return await this.engineService.findOne(id)
       }
 
       @UseGuards(JwtAuthGuard)
       @Post('/create')
       async create(@Res() response, @Body(ValidationPipe) request: ${singular(pascalEntity)}Dto) {
-          const result = await this.engineService.create(request)
+        const result = await this.engineService.create(request)
 
-          return response.status(HttpStatus.OK).json({
-              status: HttpStatus.OK,
-              message: 'Successfull Operation.',
-              data: result
-          })
+        return response.status(HttpStatus.OK).json({
+          status: HttpStatus.OK,
+          message: 'Successfull Operation.',
+          data: result
+        })
       }
 
       @UseGuards(JwtAuthGuard)
       @Put('/update/:id')
-      async update(@Res() response, @Param('id') id: string, @Body(ValidationPipe) request: ${singular(pascalEntity)}Dto) {
-          const result = await this.engineService.update(id, request)
+      async update(@Res() response, @Param('id') id: number, @Body(ValidationPipe) request: ${singular(pascalEntity)}Dto) {
+        const result = await this.engineService.update(id, request)
 
-          return response.status(HttpStatus.OK).json({
-              status: HttpStatus.OK,
-              message: 'Successfull Operation.',
-              data: result
-          })
+        return response.status(HttpStatus.OK).json({
+          status: HttpStatus.OK,
+          message: 'Successfull Operation.',
+          data: result
+        })
       }
 
       @UseGuards(JwtAuthGuard)
       @Delete('/delete/:id')
-      async delete(@Res() response, @Param('id') id: string) {
-          const result = await this.engineService.remove(id)
+      async delete(@Res() response, @Param('id') id: number) {
+        const result = await this.engineService.remove(id)
 
-          return response.status(HttpStatus.OK).json({
-              status: HttpStatus.OK,
-              message: 'Successfull Operation.',
-              data: result
-          })
+        return response.status(HttpStatus.OK).json({
+        status: HttpStatus.OK,
+        message: 'Successfull Operation.',
+        data: result
+        })
       }
     }
 

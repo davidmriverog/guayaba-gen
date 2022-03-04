@@ -2,7 +2,7 @@ import * as fs from "fs"
 import * as path from "path"
 import { writeFile } from '../../utils/writer-files.util'
 import { getDefaultConfig } from "../../config/param.config"
-import { UpdateRootHQLModuleTemplate } from "../../../templates/rest-module/update-root-hql-module.template"
+import { UpdateRootAPIModuleTemplate, UpdateRootHQLModuleTemplate } from "../../../templates/rest-module/update-root-hql-module.template"
 
 
 export const UpdateRootHQLModule = async () => {
@@ -16,6 +16,21 @@ export const UpdateRootHQLModule = async () => {
   }
 
   const rendered = UpdateRootHQLModuleTemplate(defaultAppConfig.resultPathGraphql)
+
+  await writeFile(rendered, filePath)
+}
+
+export const UpdateRootAPIModule = async () => {
+
+  const defaultAppConfig = getDefaultConfig()
+
+  const filePath = path.resolve(defaultAppConfig.resultPathApi, `api.module.ts`)
+
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath) // removemos archivo anterior
+  }
+
+  const rendered = UpdateRootAPIModuleTemplate(defaultAppConfig.resultPathApi)
 
   await writeFile(rendered, filePath)
 }

@@ -9,7 +9,8 @@ export const CrudApiDtoTemplate = (entityName: string) => {
     import { IsNotEmpty } from 'class-validator'
 
     export class ${singular(pascalEntity)}Dto {
-
+      @IsNotEmpty()
+      name: string
     }
 
   `
