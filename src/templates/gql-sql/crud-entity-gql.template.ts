@@ -27,15 +27,15 @@ export const CrudEntityGQLTemplate = (rootName: string, entityName: string) => {
     name: string
 
     @Field(() => Date, { nullable: true })
-    @CreateDateColumn({ type: "timestamp" })
+    @CreateDateColumn({ type: "datetime" })
     createdAt?: Date
 
     @Field(() => Date, { nullable: true })
-    @UpdateDateColumn({ type: "timestamp", default: null })
+    @UpdateDateColumn({ type: "datetime", default: null })
     updatedAt?: Date
 
     @Field(() => Date, { nullable: true })
-    @DeleteDateColumn({ type: "timestamp", default: null })
+    @DeleteDateColumn({ type: "datetime", default: null })
     deletedAt?: Date
   }
 
@@ -67,15 +67,15 @@ export const CrudEntityGQLNoPrefixTemplate = (rootName: string, entityName: stri
     name: string
 
     @Field(() => Date, { nullable: true })
-    @CreateDateColumn({ type: "timestamp" })
+    @CreateDateColumn({ type: "datetime" })
     createdAt?: Date
 
     @Field(() => Date, { nullable: true })
-    @UpdateDateColumn({ type: "timestamp", default: null })
+    @UpdateDateColumn({ type: "datetime", default: null })
     updatedAt?: Date
 
     @Field(() => Date, { nullable: true })
-    @DeleteDateColumn({ type: "timestamp", default: null })
+    @DeleteDateColumn({ type: "datetime", default: null })
     deletedAt?: Date
   }
 
