@@ -11,7 +11,7 @@ export const CrudResolverGQLGuardTemplate = (entityName: string) => {
   import { UseGuards } from "@nestjs/common"
   import { Resolver, Query, Mutation, Args, Int } from "@nestjs/graphql"
 
-  import { FilterCriteriaInfo } from "src/core/lib"
+  import { FilterCriteriaInfo, GenericResult } from "src/core/lib"
   import { GqlAuthGuard } from '../../../graphql/auth/guard/ggl-auth.guard'
 
   import { ${singular(pascalEntity)}Service } from "./${customSingular(entityName)}.service"
@@ -58,6 +58,12 @@ export const CrudResolverGQLGuardTemplate = (entityName: string) => {
     @UseGuards(GqlAuthGuard)
     async remove${singular(pascalEntity)}(@Args("id", { type: () => Int }) id: number) {
       return await this.engineService.remove(id)
+    }
+
+    @Mutation(() => GenericResult)
+    @UseGuards(GqlAuthGuard)
+    async removes${singular(pascalEntity)}(@Args("entities", { type: () => [Int] }) entities: number[]) {
+      return await this.engineService.removes(entities)
     }
   }
   `
