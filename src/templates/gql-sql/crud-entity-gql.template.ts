@@ -67,15 +67,15 @@ export const CrudEntityGQLNoPrefixTemplate = (rootName: string, entityName: stri
     name: string
 
     @Field(() => Date, { nullable: true })
-    @CreateDateColumn({ type: "datetime" })
+    @CreateDateColumn()
     createdAt?: Date
 
     @Field(() => Date, { nullable: true })
-    @UpdateDateColumn({ type: "datetime", default: null })
+    @UpdateDateColumn({ default: null })
     updatedAt?: Date
 
     @Field(() => Date, { nullable: true })
-    @DeleteDateColumn({ type: "datetime", default: null })
+    @DeleteDateColumn({ default: null })
     deletedAt?: Date
   }
 
