@@ -50,3 +50,4 @@ export * from "./build-generate/common/update-root-module.common"
 
 export * from "./build-generate/graphql/crud-mysql-internal-login/crud-mysql-internal-login.build"
 export * from "./build-generate/graphql/crud-postgres-internal-login/crud-postgres-internal-login.generator"
+export * from "./build-generate/graphql/crud-mysql-keycloak-login/crud-mysql-keycloak-login.build"
