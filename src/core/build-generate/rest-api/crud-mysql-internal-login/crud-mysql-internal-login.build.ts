@@ -8,12 +8,12 @@ import cli from "cli-ux"
 import { getDefaultConfig } from "../../../config/param.config"
 import { GenerateRootGrapHQLModule } from "../../common/root-module-graphql.common"
 import { GenerateCrudServiceDBRelationalModule } from "../../common/crud-service-entity.common"
-import { GenerateCrudModuleEntityGrapHQLModule } from "../../common/crud-module-entity-graphql.common"
-import { UpdateRootNestModule } from "../../common/update-root-module.common"
-import { UpdateRootGrapHQLModule } from "../../common/update-root-graphql.common"
-import { GenerateCrudResolverInternalLoginModule } from "../../common/crud-resolver-login-internal.common"
 import { GenerateCrudEntityRestAPIMySQL } from "./generator/crud-mysql-entity-restapi.generator"
 import { GenerateRestAPICrudDtoModule } from "./generator/crud-mysql-dto-restapi.generator"
+import { GenerateRestAPIControllerClass } from "./generator/crud-mysql-controller-restapi.generate"
+import { GenerateCrudModuleEntityRestAPIModule } from "../../common/crud-module-entity-restapi.common"
+import { UpdateRootRestAPIModule } from "../../common/update-root-restapi.common"
+import { UpdateRootRestAPIPrefixModule } from "../../common/update-root-module-rest.common"
 
 /**
  * Run Option Generator MySQL internal LOGIN (CRUD) RestAPI.
@@ -96,30 +96,30 @@ export async function runOptionMySQLInternalLoginRestAPI() {
     // 5) CREATE CONTROLLER
     cli.action.start(`Creating Controller Entity ${singular(entityName)}`)
 
-    await GenerateCrudResolverInternalLoginModule(entityName, crudModelPath)
+    await GenerateRestAPIControllerClass(entityName, crudModelPath)
 
     cli.action.stop(`Entity Controller ${singular(entityName)} Created Successful! [OK]`)
 
     // 6) CREATE ENTITY MODULE
     cli.action.start(`Creating Module Entity ${singular(entityName)}`)
 
-    await GenerateCrudModuleEntityGrapHQLModule(entityName, crudModelPath)
+    await GenerateCrudModuleEntityRestAPIModule(entityName, crudModelPath)
 
     cli.action.stop(`Entity Module ${singular(entityName)} Created Successful! [OK]`)
 
     // 7) UPDATE ROOT MODULES
     cli.action.start(`Update Root Module prefix [${prefix}]`)
 
-    await UpdateRootNestModule(prefix)
+    await UpdateRootRestAPIPrefixModule(prefix)
 
     cli.action.stop(`Root Module Prefix [${prefix}] Updated Successful! [OK]`)
 
-    // 8) UPDATE HQL MODULES
-    cli.action.start(`Update HQL Module`)
+    // 8) UPDATE RestAPI MODULES
+    cli.action.start(`Update RestAPI Module`)
 
-    await UpdateRootGrapHQLModule()
+    await UpdateRootRestAPIModule()
 
-    cli.action.stop(`HQL Module Updated Successful! [OK]`)
+    cli.action.stop(`HQL RestAPI Updated Successful! [OK]`)
 
   } catch (error) {
     console.log(error)

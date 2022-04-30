@@ -24,7 +24,7 @@ export const CrudEntityRestAPIMySQLTemplate = (entityName: string) => {
   const pascalEntity = changeCase.pascalCase(entityName)
 
   return `
-  import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm'
+  import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
 
   @Entity({
     name: "${customSnakePlural(entityName)}"

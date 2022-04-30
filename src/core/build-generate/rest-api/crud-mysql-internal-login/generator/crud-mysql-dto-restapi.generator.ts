@@ -24,7 +24,7 @@ export const CrudRestAPIDtoTemplate = (entityName: string) => {
   const pascalEntity = changeCase.pascalCase(entityName)
 
   return `
-  import { IsNotEmpty } from 'class-validator'
+  import { IsNotEmpty } from "class-validator"
 
   export class ${singular(pascalEntity)}Dto {
     @IsNotEmpty()
