@@ -10,7 +10,7 @@ import { GenerateRootGrapHQLModule } from "../../common/root-module-graphql.comm
 import { GenerateCrudDtoGrapHQLModule } from "../../common/crud-dto-graphql.common"
 import { GenerateCrudServiceDBRelationalModule } from "../../common/crud-service-entity.common"
 import { GenerateCrudModuleEntityGrapHQLModule } from "../../common/crud-module-entity-graphql.common"
-import { UpdateRootModule } from "../../common/update-root-module.common"
+import { UpdateRootNestModule } from "../../common/update-root-module.common"
 import { UpdateRootGrapHQLModule } from "../../common/update-root-graphql.common"
 import { GenerateCrudResolverInternalLoginModule } from "../../common/crud-resolver-login-internal.common"
 import { GenerateCrudEntityGrapHQLPostgres } from "./generator/crud-postgres-entity-graphql.generator"
@@ -110,7 +110,7 @@ export async function runOptionPostgreSQLInternalLogin() {
     // 7) UPDATE ROOT MODULES
     cli.action.start(`Update Root Module prefix [${prefix}]`)
 
-    await UpdateRootModule(prefix)
+    await UpdateRootNestModule(prefix)
 
     cli.action.stop(`Root Module Prefix [${prefix}] Updated Successful! [OK]`)
 

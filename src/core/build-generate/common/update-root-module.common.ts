@@ -6,7 +6,7 @@ import * as changeCase from "change-case"
 import { writeFile } from "../../utils/writer-files.util"
 import { getDefaultConfig } from "../../config/param.config"
 
-export const UpdateRootModule = async (rootName: string) => {
+export const UpdateRootNestModule = async (rootName: string) => {
 
   const defaultAppConfig = getDefaultConfig()
 
