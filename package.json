@@ -57,7 +57,10 @@
             "@oclif/plugin-help"
         ]
     },
-    "repository": "davidmriverog/guayaba-gen",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/davidmriverog/guayaba-gen"
+    },
     "scripts": {
         "postpack": "rimraf oclif.manifest.json",
         "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
