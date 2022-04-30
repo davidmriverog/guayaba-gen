@@ -9,13 +9,7 @@ export const GenerateRootGrapHQLModule = async (rootName: string) => {
 
   const defaultAppConfig = getDefaultConfig()
 
-  const graphqlDestinationModule = `${defaultAppConfig.resultPath}/graphql`
-
-  if (!fs.existsSync(graphqlDestinationModule)) {
-    fs.mkdirSync(graphqlDestinationModule)
-  }
-
-  const generatedPath = path.resolve(graphqlDestinationModule, `./${rootName}`)
+  const generatedPath = path.resolve(defaultAppConfig.resultPathGraphql, `./${rootName}`)
 
   if (!fs.existsSync(generatedPath)) {
     fs.mkdirSync(generatedPath)
@@ -35,9 +29,9 @@ export const RootModuleGrapHQLTemplate = (rootName: string) => {
     import { Module } from "@nestjs/common"
 
     @Module({
-        imports: [
+      imports: [
 
-        ]
+      ]
     })
     export class ${moduleName}Module { }
   `

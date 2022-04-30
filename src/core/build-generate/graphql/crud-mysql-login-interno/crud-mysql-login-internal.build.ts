@@ -10,6 +10,10 @@ import { GenerateRootGrapHQLModule } from "../../common/root-module-graphql.comm
 import { GenerateCrudEntityGrapHQLMySQL } from "./generator/crud-mysql-entity-graphql.generator"
 import { GenerateCrudDtoGrapHQLModule } from "../../common/crud-dto-graphql.common"
 import { GenerateCrudServiceDBRelationalModule } from "../../common/crud-service-entity.common"
+import { GenerateCrudModuleEntityGrapHQLModule } from "../../common/crud-module-entity-graphql.common"
+import { UpdateRootModule } from "../../common/update-root-module.common"
+import { UpdateRootGrapHQLModule } from "../../common/update-root-graphql.common"
+import { GenerateCrudResolverInternalLoginModule } from "../../common/crud-resolver-login-internal.common"
 
 /**
  * Run Option Generator MySQL internal LOGIN (CRUD).
@@ -22,7 +26,7 @@ export async function runOptionMySQLInternalLogin() {
     const defaultAppConfig = getDefaultConfig()
 
     // prefix
-    const questionPrefix: { name: string } = await inquirer.prompt([
+    const questionPrefix: { prefix: string } = await inquirer.prompt([
       {
         name: "prefix",
         message: "Please input entity prefix (module):",
@@ -39,14 +43,19 @@ export async function runOptionMySQLInternalLogin() {
       }
     ])
 
-    if (questionPrefix.name !== "")
+    if (questionPrefix.prefix == "")
       throw new Error("Field prefix is required")
 
-    if (questionName.name !== "")
+    if (questionName.name == "")
       throw new Error("Field name is required")
 
-    const prefix = questionPrefix.name
+    const prefix = questionPrefix.prefix
     const entityName = questionName.name
+
+    if (!fs.existsSync(defaultAppConfig.resultPathGraphql)) {
+
+      fs.mkdirSync(defaultAppConfig.resultPathGraphql)
+    }
 
     const generatedPath = path.resolve(defaultAppConfig.resultPathGraphql, `./${prefix}`)
 
@@ -83,6 +92,34 @@ export async function runOptionMySQLInternalLogin() {
     await GenerateCrudServiceDBRelationalModule(entityName, crudModelPath)
 
     cli.action.stop(`Entity Service ${singular(entityName)} Created Successful! [OK]`)
+
+    // 5) CREATE RESOLVER
+    cli.action.start(`Creating Resolver Entity ${singular(entityName)}`)
+
+    await GenerateCrudResolverInternalLoginModule(entityName, crudModelPath)
+
+    cli.action.stop(`Entity Resolver ${singular(entityName)} Created Successful! [OK]`)
+
+    // 6) CREATE ENTITY MODULE
+    cli.action.start(`Creating Module Entity ${singular(entityName)}`)
+
+    await GenerateCrudModuleEntityGrapHQLModule(entityName, crudModelPath)
+
+    cli.action.stop(`Entity Module ${singular(entityName)} Created Successful! [OK]`)
+
+    // 7) UPDATE ROOT MODULES
+    cli.action.start(`Update Root Module prefix [${prefix}]`)
+
+    await UpdateRootModule(prefix)
+
+    cli.action.stop(`Root Module Prefix [${prefix}] Updated Successful! [OK]`)
+
+    // 8) UPDATE HQL MODULES
+    cli.action.start(`Update HQL Module`)
+
+    await UpdateRootGrapHQLModule()
+
+    cli.action.stop(`HQL Module Updated Successful! [OK]`)
 
   } catch (error) {
     console.log(error)

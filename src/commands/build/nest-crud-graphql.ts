@@ -22,7 +22,7 @@ export class NestCrudGrapHQLModule extends Command {
         {
           type: "rawlist",
           name: "nestjsSelection",
-          message: "Por favor elija",
+          message: "Please select option",
           choices: [
             NestValueOptionEnum.CRUD_MYSQL_LOGIN_INTERNO,
             NestValueOptionEnum.CRUD_POSTGRES_LOGIN_INTERNO,
