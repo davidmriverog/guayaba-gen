@@ -20,7 +20,7 @@ import { GenerateCrudResolverKeycloakLoginModule } from "./generator/crud-mysql-
  *
  * @author David rivero (ErCompa) <davidmriverog@gmail.com>
  */
-export async function runOptionMySQLInternalLogin() {
+export async function runOptionMySQLKeycloakLogin() {
 
   try {
 
