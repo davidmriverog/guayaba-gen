@@ -1,12 +1,12 @@
 {
     "name": "guayaba-gen",
-    "description": "Auto generador de plantillas",
-    "version": "1.0.0",
-    "author": "David Rivero @davidmriverog",
+    "description": "Master Generator",
+    "version": "2.0.0",
+    "author": "David Miguel Rivero <davidmriverog@gmail.com> (ErCompa)",
     "bin": {
         "guayaba-gen": "./bin/run"
     },
-    "bugs": "https://github.com/davidmriverog/drivero-cli/issues",
+    "bugs": "https://github.com/davidmriverog/guayaba-gen/issues",
     "dependencies": {
         "@oclif/command": "^1.8.0",
         "@oclif/config": "^1.17.0",
@@ -44,7 +44,9 @@
     ],
     "homepage": "https://github.com/davidmriverog/guayaba-gen",
     "keywords": [
-        "oclif"
+        "oclif",
+        "guayaba",
+        "davidmriverog"
     ],
     "license": "MIT",
     "main": "lib/index.js",

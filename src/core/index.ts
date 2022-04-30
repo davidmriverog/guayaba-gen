@@ -40,8 +40,13 @@ export * from "./images/main-graphql"
 
 
 // BUILD GENERATED GUAYABA PRO
-export * from "./build-generate/common/root-module-graphql.common"
 export * from "./build-generate/common/crud-dto-graphql.common"
+export * from "./build-generate/common/crud-module-entity-graphql.common"
+export * from "./build-generate/common/crud-resolver-login-internal.common"
 export * from "./build-generate/common/crud-service-entity.common"
+export * from "./build-generate/common/root-module-graphql.common"
+export * from "./build-generate/common/update-root-graphql.common"
+export * from "./build-generate/common/update-root-module.common"
 
-export * from "./build-generate/graphql/crud-mysql-login-interno/crud-mysql-login-internal.build"
+export * from "./build-generate/graphql/crud-mysql-internal-login/crud-mysql-internal-login.build"
+export * from "./build-generate/graphql/crud-postgres-internal-login/crud-postgres-internal-login.generator"
