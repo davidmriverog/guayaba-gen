@@ -3,7 +3,7 @@ import * as path from "path"
 import { singular } from "pluralize"
 import * as changeCase from "change-case"
 
-import { writeFile } from '../../../../utils/writer-files.util'
+import { writeFile } from "../../../../utils/writer-files.util"
 import { customSnakePlural } from "../../../../utils/convert-singular.util"
 
 export const GenerateCrudEntityGrapHQLMySQL = async (entityName: string, pathEntity: string) => {
