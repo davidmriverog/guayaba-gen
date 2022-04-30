@@ -7,13 +7,13 @@ import cli from "cli-ux"
 
 import { getDefaultConfig } from "../../../config/param.config"
 import { GenerateRootGrapHQLModule } from "../../common/root-module-graphql.common"
-import { GenerateCrudDtoGrapHQLModule } from "../../common/crud-dto-graphql.common"
 import { GenerateCrudServiceDBRelationalModule } from "../../common/crud-service-entity.common"
 import { GenerateCrudModuleEntityGrapHQLModule } from "../../common/crud-module-entity-graphql.common"
 import { UpdateRootNestModule } from "../../common/update-root-module.common"
 import { UpdateRootGrapHQLModule } from "../../common/update-root-graphql.common"
 import { GenerateCrudResolverInternalLoginModule } from "../../common/crud-resolver-login-internal.common"
 import { GenerateCrudEntityRestAPIMySQL } from "./generator/crud-mysql-entity-restapi.generator"
+import { GenerateRestAPICrudDtoModule } from "./generator/crud-mysql-dto-restapi.generator"
 
 /**
  * Run Option Generator MySQL internal LOGIN (CRUD) RestAPI.
@@ -82,7 +82,7 @@ export async function runOptionMySQLInternalLoginRestAPI() {
     // 3) CREATE DTO AND OBJECT TYPES
     cli.action.start(`Creating DTO Entity ${singular(entityName)}`)
 
-    await GenerateCrudDtoGrapHQLModule(entityName, crudModelPath)
+    await GenerateRestAPICrudDtoModule(entityName, crudModelPath)
 
     cli.action.stop(`Entity DTO ${singular(entityName)} Created Successful! [OK]`)
 
@@ -93,12 +93,12 @@ export async function runOptionMySQLInternalLoginRestAPI() {
 
     cli.action.stop(`Entity Service ${singular(entityName)} Created Successful! [OK]`)
 
-    // 5) CREATE RESOLVER
-    cli.action.start(`Creating Resolver Entity ${singular(entityName)}`)
+    // 5) CREATE CONTROLLER
+    cli.action.start(`Creating Controller Entity ${singular(entityName)}`)
 
     await GenerateCrudResolverInternalLoginModule(entityName, crudModelPath)
 
-    cli.action.stop(`Entity Resolver ${singular(entityName)} Created Successful! [OK]`)
+    cli.action.stop(`Entity Controller ${singular(entityName)} Created Successful! [OK]`)
 
     // 6) CREATE ENTITY MODULE
     cli.action.start(`Creating Module Entity ${singular(entityName)}`)
