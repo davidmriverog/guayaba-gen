@@ -1,13 +1,11 @@
 import {Command, flags } from "@oclif/command"
 import inquirer from "inquirer"
 
-import { mainLogoGrapHQL } from "../../core/images/main-graphql"
+import { mainLogoRestAPI } from "../../core/images/main-graphql"
 
 import {
   NestValueOptionEnum,
-  runOptionMySQLInternalLogin,
-  runOptionMySQLKeycloakLogin,
-  runOptionPostgreSQLInternalLogin
+  runOptionMySQLInternalLogin
 } from "../../core"
 
 export class NestCrudGrapHQLModule extends Command {
@@ -21,7 +19,7 @@ export class NestCrudGrapHQLModule extends Command {
   static args = [{ name: "file" }]
 
   async run() {
-    mainLogoGrapHQL()
+    mainLogoRestAPI()
 
     inquirer
       .prompt([
@@ -44,16 +42,6 @@ export class NestCrudGrapHQLModule extends Command {
           case NestValueOptionEnum.CRUD_MYSQL_LOGIN_INTERNO:
 
             await runOptionMySQLInternalLogin()
-
-            break;
-          case NestValueOptionEnum.CRUD_POSTGRES_LOGIN_INTERNO:
-
-            await runOptionPostgreSQLInternalLogin()
-
-            break;
-          case NestValueOptionEnum.CRUD_MYSQL_LOGIN_KEYCLOAK:
-
-            await runOptionMySQLKeycloakLogin()
 
             break;
         }
