@@ -2,7 +2,7 @@
     "name": "guayaba-gen",
     "description": "Master Generator",
     "version": "2.0.0",
-    "author": "David Rivero @davidmriverog",
+    "author": "David Miguel Rivero <davidmriverog@gmail.com> (ErCompa)",
     "bin": {
         "guayaba-gen": "./bin/run"
     },
