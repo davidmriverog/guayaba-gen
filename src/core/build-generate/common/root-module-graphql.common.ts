@@ -21,6 +21,22 @@ export const GenerateRootGrapHQLModule = async (rootName: string) => {
   await writeFile(rendered, filePath)
 }
 
+export const GenerateRootRestAPIModule = async (rootName: string) => {
+
+  const defaultAppConfig = getDefaultConfig()
+
+  const generatedPath = path.resolve(defaultAppConfig.resultPathApi, `./${rootName}`)
+
+  if (!fs.existsSync(generatedPath)) {
+    fs.mkdirSync(generatedPath)
+  }
+
+  const filePath = path.resolve(generatedPath, `${rootName}.module.ts`)
+  const rendered = RootModuleGrapHQLTemplate(rootName)
+
+  await writeFile(rendered, filePath)
+}
+
 export const RootModuleGrapHQLTemplate = (rootName: string) => {
 
   const moduleName = changeCase.pascalCase(rootName)

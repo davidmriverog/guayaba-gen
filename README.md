@@ -1,11 +1,11 @@
 # README #
 
-Welcome Guayaba Master API Generator
+Welcome to Guayaba Master API Generator
 
 ## Installation
 
 ```sh
-$ npm install guayaba-gen --save
+$ npm install -g guayaba-gen
 ```
 
 
@@ -20,3 +20,7 @@ $ guayaba-gen build:nest-crud-graphql
 ```sh
 $ guayaba-gen build:nest-crud-restapi
 ```
+
+## Authors
+- [David Rivero - ErCompa](https://github.com/davidmriverog)
+- Add your clickable username here. It should point to your GitHub account.

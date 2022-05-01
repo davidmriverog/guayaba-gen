@@ -3,3 +3,9 @@ export function mainLogoGrapHQL() {
 
   console.log(image)
 }
+
+export function mainLogoRestAPI() {
+  const image = Buffer.from("ICBfX19fXyAgICAgICAgICAgICAgICAgICAgX18gICAgICAgICAgX19fICBfX19fX19fX19fX19fXwogLyBfX18vXyBfX19fXyBfX18gX19fX18gXy8gLyAgX19fIF8gIC8gXyBcLyBfXy8gX18vXyAgX18vCi8gKF8gLyAvLyAvIF8gYC8gLy8gLyBfIGAvIF8gXC8gXyBgLyAvICwgXy8gXy9fXCBcICAvIC8gICAKXF9fXy9cXyxfL1xfLF8vXF8sIC9cXyxfL18uX18vXF8sXy8gL18vfF8vX19fL19fXy8gL18vICAgIAogICAgICAgICAgICAgIC9fX18vICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg", 'base64').toString()
+
+  console.log(image)
+}

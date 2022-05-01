@@ -1,12 +1,19 @@
 import {Command, flags } from "@oclif/command"
-import { mainLogoGrapHQL } from "../../core/images/main-graphql"
-import cli from "cli-ux"
 import inquirer from "inquirer"
-import { NestValueOptionEnum, runOptionMySQLInternalLogin, runOptionMySQLKeycloakLogin, runOptionPostgreSQLInternalLogin } from "../../core"
+
+import { mainLogoGrapHQL } from "../../core/images/main-graphql"
+
+import {
+  NestValueOptionEnum,
+  runOptionMongoDBInternalLogin,
+  runOptionMySQLInternalLogin,
+  runOptionMySQLKeycloakLogin,
+  runOptionPostgreSQLInternalLogin
+} from "../../core"
 
 export class NestCrudGrapHQLModule extends Command {
 
-  static description = "Master Generator GrapHQL"
+  static description = "Master CRUD API Generator"
 
   static flags = {
     help: flags.help({ char: "h" })
@@ -21,7 +28,7 @@ export class NestCrudGrapHQLModule extends Command {
       .prompt([
         {
           type: "rawlist",
-          name: "nestjsSelection",
+          name: "selection",
           message: "Please select option",
           choices: [
             NestValueOptionEnum.CRUD_MYSQL_LOGIN_INTERNO,
@@ -34,7 +41,7 @@ export class NestCrudGrapHQLModule extends Command {
       ])
       .then(async answers => {
 
-        switch (answers.nestjsSelection) {
+        switch (answers.selection) {
           case NestValueOptionEnum.CRUD_MYSQL_LOGIN_INTERNO:
 
             await runOptionMySQLInternalLogin()
@@ -48,6 +55,11 @@ export class NestCrudGrapHQLModule extends Command {
           case NestValueOptionEnum.CRUD_MYSQL_LOGIN_KEYCLOAK:
 
             await runOptionMySQLKeycloakLogin()
+
+            break;
+          case NestValueOptionEnum.CRUD_MONGODB_LOGIN_INTERNO:
+
+            await runOptionMongoDBInternalLogin()
 
             break;
         }
