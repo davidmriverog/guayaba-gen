@@ -5,7 +5,7 @@ Welcome Guayaba Master API Generator
 ## Installation
 
 ```sh
-$ npm install guayaba-gen --save
+$ npm install -g guayaba-gen
 ```
 
 

@@ -6,7 +6,7 @@ import { singular } from "pluralize"
 import cli from "cli-ux"
 
 import { getDefaultConfig } from "../../../config/param.config"
-import { GenerateRootGrapHQLModule } from "../../common/root-module-graphql.common"
+import { GenerateRootRestAPIModule } from "../../common/root-module-graphql.common"
 import { GenerateCrudServiceDBRelationalModule } from "../../common/crud-service-entity.common"
 import { GenerateCrudEntityRestAPIMySQL } from "./generator/crud-mysql-entity-restapi.generator"
 import { GenerateRestAPICrudDtoModule } from "./generator/crud-mysql-dto-restapi.generator"
@@ -62,7 +62,7 @@ export async function runOptionMySQLInternalLoginRestAPI() {
     // 1) ROOT MODULE ENTITY PREFIX
     cli.action.start(`Check Prefix Module [${prefix}]`)
 
-    if (!fs.existsSync(generatedPath)) await GenerateRootGrapHQLModule(prefix)
+    if (!fs.existsSync(generatedPath)) await GenerateRootRestAPIModule(prefix)
 
     const crudModelPath = path.resolve(generatedPath, `./${singular(entityName)}`)
 
