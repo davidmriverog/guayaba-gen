@@ -54,5 +54,6 @@ export * from "./build-generate/common/update-root-module-rest.common"
 export * from "./build-generate/graphql/crud-mysql-internal-login/crud-mysql-internal-login.build"
 export * from "./build-generate/graphql/crud-postgres-internal-login/crud-postgres-internal-login.generator"
 export * from "./build-generate/graphql/crud-mysql-keycloak-login/crud-mysql-keycloak-login.build"
+export * from "./build-generate/graphql/crud-mongo-internal-login/crud-mongo-internal-login.build"
 
 export * from "./build-generate/rest-api/crud-mysql-internal-login/crud-mysql-internal-login.build"

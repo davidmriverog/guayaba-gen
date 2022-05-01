@@ -5,6 +5,7 @@ import { mainLogoGrapHQL } from "../../core/images/main-graphql"
 
 import {
   NestValueOptionEnum,
+  runOptionMongoDBInternalLogin,
   runOptionMySQLInternalLogin,
   runOptionMySQLKeycloakLogin,
   runOptionPostgreSQLInternalLogin
@@ -54,6 +55,11 @@ export class NestCrudGrapHQLModule extends Command {
           case NestValueOptionEnum.CRUD_MYSQL_LOGIN_KEYCLOAK:
 
             await runOptionMySQLKeycloakLogin()
+
+            break;
+          case NestValueOptionEnum.CRUD_MONGODB_LOGIN_INTERNO:
+
+            await runOptionMongoDBInternalLogin()
 
             break;
         }
