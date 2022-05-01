@@ -45,7 +45,6 @@ export const UpdateRootModuleTemplate = (rootName: string, pathFile: string) => 
 
   })
 
-
   return `
   import { Module } from "@nestjs/common"
 
