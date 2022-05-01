@@ -27,7 +27,7 @@ export class NestCrudGrapHQLModule extends Command {
       .prompt([
         {
           type: "rawlist",
-          name: "nestjsSelection",
+          name: "selection",
           message: "Please select option",
           choices: [
             NestValueOptionEnum.CRUD_MYSQL_LOGIN_INTERNO,
@@ -40,7 +40,7 @@ export class NestCrudGrapHQLModule extends Command {
       ])
       .then(async answers => {
 
-        switch (answers.nestjsSelection) {
+        switch (answers.selection) {
           case NestValueOptionEnum.CRUD_MYSQL_LOGIN_INTERNO:
 
             await runOptionMySQLInternalLogin()
