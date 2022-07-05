@@ -41,7 +41,6 @@ export const UpdateRootGrapHQLModuleTemplate = (pathFile: string) => {
 
   })
 
-
   return `
   import { Module } from "@nestjs/common"
 

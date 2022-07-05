@@ -1,7 +1,5 @@
 import * as Prettier from "prettier"
-import * as changeCase from "change-case"
 import * as fs from "fs"
-import * as path from "path"
 import { isJsonFile } from "./json-file.util"
 
 const prettierOptions: Prettier.Options = {
