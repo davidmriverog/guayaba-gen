@@ -76,7 +76,7 @@ export async function runOptionMySQLKeycloakLogin() {
     // 2) CREATE ENTITY
     cli.action.start(`Creating Entity ${singular(entityName)}`)
 
-    await GenerateCrudEntityGrapHQLMySQL(entityName, crudModelPath)
+    await GenerateCrudEntityGrapHQLMySQL(entityName, crudModelPath, prefix)
 
     cli.action.stop(`Entity ${singular(entityName)} Created Successful! [OK]`)
 

@@ -6,7 +6,7 @@ import * as changeCase from "change-case"
 import { writeFile } from "../../../../utils/writer-files.util"
 import { customSnakePlural } from "../../../../utils/convert-singular.util"
 
-export const GenerateCrudEntityGrapHQLMySQL = async (entityName: string, pathEntity: string) => {
+export const GenerateCrudEntityGrapHQLMySQL = async (entityName: string, pathEntity: string, prefix?: string) => {
 
   const filePathEntity = path.resolve(pathEntity, `./entities`)
 
@@ -14,14 +14,16 @@ export const GenerateCrudEntityGrapHQLMySQL = async (entityName: string, pathEnt
 
   const filePath = path.resolve(filePathEntity, `${singular(entityName)}.entity.ts`)
 
-  const rendered = CrudEntityGrapHQLMySQLTemplate(entityName)
+  const rendered = CrudEntityGrapHQLMySQLTemplate(entityName, prefix)
 
   await writeFile(rendered, filePath)
 }
 
-export const CrudEntityGrapHQLMySQLTemplate = (entityName: string) => {
+export const CrudEntityGrapHQLMySQLTemplate = (entityName: string, prefix?: string) => {
 
   const pascalEntity = changeCase.pascalCase(entityName)
+
+  const strEntityName = prefix ? `${prefix}_${customSnakePlural(entityName)}` : `${customSnakePlural(entityName)}`
 
   return `
   import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
@@ -31,7 +33,7 @@ export const CrudEntityGrapHQLMySQLTemplate = (entityName: string) => {
 
   @ObjectType()
   @Entity({
-    name: "${customSnakePlural(entityName)}"
+    name: "${strEntityName}"
   })
   export class ${singular(pascalEntity)} extends BaseModel {
 
@@ -54,6 +56,8 @@ export const CrudEntityGrapHQLMySQLTemplate = (entityName: string) => {
     @Field(() => Date, { nullable: true })
     @DeleteDateColumn({ type: "datetime", default: null })
     deletedAt: Date
+
+    // Relations
   }
   `
 }
