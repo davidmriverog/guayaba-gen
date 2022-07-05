@@ -54,6 +54,8 @@ export const CrudEntityGrapHQLPostgresTemplate = (entityName: string) => {
     @Field(() => Date, { nullable: true })
     @DeleteDateColumn({ default: null })
     deletedAt: Date
+
+    // Relations
   }
   `
 }
