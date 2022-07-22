@@ -44,15 +44,15 @@ export const CrudEntityGrapHQLPostgresTemplate = (entityName: string) => {
     name: string
 
     @Field(() => Date, { nullable: true })
-    @CreateDateColumn({ type: "timestamp without time zone" })
+    @CreateDateColumn({ type: "timestamp with time zone" })
     createdAt: Date
 
     @Field(() => Date, { nullable: true })
-    @UpdateDateColumn({ type: "timestamp without time zone", default: null })
+    @UpdateDateColumn({ type: "timestamp with time zone", default: null })
     updatedAt: Date
 
     @Field(() => Date, { nullable: true })
-    @DeleteDateColumn({ type: "timestamp without time zone", default: null })
+    @DeleteDateColumn({ type: "timestamp with time zone", default: null })
     deletedAt: Date
 
     // Relations
